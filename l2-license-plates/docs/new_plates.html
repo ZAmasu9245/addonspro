@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta type="author" content="bot">
+<head>
+    <title>Limelight Licenseplates</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Adding Custom License Plates</h1>
+
+
+<h2>Requirements</h2>
+<ul class="nowrap">
+  <li><a href="https://www.gmodstore.com/scripts/view/4943">L² License Plates</a></li>
+  <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=195065185">Easy Entity Inspector</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+
+<h2>Steps</h2>
+<table class="module_list">
+	<tr>
+		<td class="name"  nowrap>Step 1</td>
+		<td class="summary">Get the template.<br><pre><code>
+PLATE:RegisterPlate("VEHICLE_NAME", {
+	pos = Vector(0, 0, 0),
+	ang = angForward,
+	scale = 1,
+},{
+	pos = Vector(0, 0, 0),
+	ang = angBackward,
+	scale = 1,
+})
+		</code></pre></td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap>Step 2</td>
+		<td class="summary">Go to the Q Menu, right click the vehicle you want then "copy to clipboard".<br>Replace VEHICLE_NAME with your clipboard contents.</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap>Step 3</td>
+		<td class="summary">Get out your Easy Entity Inspector Tool</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap>Step 4</td>
+		<td class="summary">Click on the vehicle, where you want your front license plate.</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap>Step 5</td>
+		<td class="summary">Find the second "Vector(" position, then click the "copy to clipboard" button.</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap>Step 6</td>
+		<td class="summary">Replace the first vector in the template with the vector you copied.</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap>Step 7</td>
+		<td class="summary">Adjust to liking.</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap>Step 8</td>
+		<td class="summary">Repeat with the second vector, for the rear plate.</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap>Custom Angles</td>
+		<td class="summary">For minor adjustments, I'd suggest taking the angle (angForward / angBackward) and adding an angle to it.</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap>Complete Example</td>
+		<td class="summary"><pre><code>
+PLATE:RegisterPlate("chev_cucv_lw", {
+	pos = Vector(0, 106.3, 37.2),
+	ang = angForward + Angle(0, 0, 15),
+	scale = 1,
+},{
+	pos = Vector( 0, -139.5, 31.5),
+	ang = angBackward,
+	scale = 1,
+})
+		</code></pre></td>
+	</tr>
+
+</table>
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

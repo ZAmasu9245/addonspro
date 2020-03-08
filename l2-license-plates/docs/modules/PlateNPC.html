@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>L2 Plates Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/Loader.html">Loader</a></li>
+  <li><strong>PlateNPC</strong></li>
+  <li><a href="../modules/PLATE.html">PLATE</a></li>
+  <li><a href="../modules/PLATE.Config.html">PLATE.Config</a></li>
+  <li><a href="../modules/ll_plates.sh_autogen.html">ll_plates.sh_autogen</a></li>
+  <li><a href="../modules/xAdmin.html">xAdmin</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>PlateNPC</code></h1>
+<p>License Seller NPC Client Code</p>
+<p></p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Copyright</strong>: 2019 Limelight Gaming</li>
+        <li><strong>Release</strong>: 1.5.5</li>
+        <li><strong>Author</strong>: Doctor Internet</li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#LL_PLATES_SYSTEM:OpenNPCMenu">LL_PLATES_SYSTEM:OpenNPCMenu (leng, ply, veh)</a></td>
+	<td class="summary">Open the NPC plate menu.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Initialize">Initialize ()</a></td>
+	<td class="summary">Prepare the entity for use.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#OnTakeDamage">OnTakeDamage ()</a></td>
+	<td class="summary">Hook function called when damage is sent.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AcceptInput">AcceptInput (n, a, c)</a></td>
+	<td class="summary">Called when an input is sent.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetAutomaticFrameAdvance">SetAutomaticFrameAdvance (bUsingAnim)</a></td>
+	<td class="summary">Setter for ENT.AutomaticFrameAdvance</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Base">Base</a></td>
+	<td class="summary">The entity base used.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Type">Type</a></td>
+	<td class="summary">The type of entity.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AutomaticFrameAdvance">AutomaticFrameAdvance</a></td>
+	<td class="summary">If frames are automatically advanced.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#PrintName">PrintName</a></td>
+	<td class="summary">Client spawn name.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Author">Author</a></td>
+	<td class="summary">Author.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Contact">Contact</a></td>
+	<td class="summary">Contact info.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Purpose">Purpose</a></td>
+	<td class="summary">Fluff text</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Instructions">Instructions</a></td>
+	<td class="summary">Fluff text</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#AdminSpawnable">AdminSpawnable</a></td>
+	<td class="summary">If the ent can be spawned by admins.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Spawnable">Spawnable</a></td>
+	<td class="summary">If the ent can be spawned.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "LL_PLATES_SYSTEM:OpenNPCMenu"></a>
+    <strong>LL_PLATES_SYSTEM:OpenNPCMenu (leng, ply, veh)</strong>
+    </dt>
+    <dd>
+    Open the NPC plate menu.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">leng</span>
+            <span class="types"><span class="type">int</span></span>
+         Net Message Length
+        </li>
+        <li><span class="parameter">ply</span>
+         Confirmation that the net message was sent from the server (should be nil)
+        </li>
+        <li><span class="parameter">veh</span>
+            <span class="types"><span class="type">Entity</span></span>
+         Closest player owned vehicle.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Initialize"></a>
+    <strong>Initialize ()</strong>
+    </dt>
+    <dd>
+    Prepare the entity for use.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "OnTakeDamage"></a>
+    <strong>OnTakeDamage ()</strong>
+    </dt>
+    <dd>
+    Hook function called when damage is sent.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AcceptInput"></a>
+    <strong>AcceptInput (n, a, c)</strong>
+    </dt>
+    <dd>
+    Called when an input is sent.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">n</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         The name of the sent input.
+        </li>
+        <li><span class="parameter">a</span>
+            <span class="types"><span class="type">Entity</span></span>
+         Direct activator.
+        </li>
+        <li><span class="parameter">c</span>
+            <span class="types"><span class="type">Entity</span></span>
+         Primary caller.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetAutomaticFrameAdvance"></a>
+    <strong>SetAutomaticFrameAdvance (bUsingAnim)</strong>
+    </dt>
+    <dd>
+    Setter for ENT.AutomaticFrameAdvance
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">bUsingAnim</span>
+            <span class="types"><span class="type">bool</span></span>
+         If the entity is using animations.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Base"></a>
+    <strong>Base</strong>
+    </dt>
+    <dd>
+    The entity base used.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Type"></a>
+    <strong>Type</strong>
+    </dt>
+    <dd>
+    The type of entity.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AutomaticFrameAdvance"></a>
+    <strong>AutomaticFrameAdvance</strong>
+    </dt>
+    <dd>
+    If frames are automatically advanced.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "PrintName"></a>
+    <strong>PrintName</strong>
+    </dt>
+    <dd>
+    Client spawn name.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Author"></a>
+    <strong>Author</strong>
+    </dt>
+    <dd>
+    Author.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Contact"></a>
+    <strong>Contact</strong>
+    </dt>
+    <dd>
+    Contact info.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Purpose"></a>
+    <strong>Purpose</strong>
+    </dt>
+    <dd>
+    Fluff text
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Instructions"></a>
+    <strong>Instructions</strong>
+    </dt>
+    <dd>
+    Fluff text
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "AdminSpawnable"></a>
+    <strong>AdminSpawnable</strong>
+    </dt>
+    <dd>
+    If the ent can be spawned by admins.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Spawnable"></a>
+    <strong>Spawnable</strong>
+    </dt>
+    <dd>
+    If the ent can be spawned.
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2020-02-27 23:18:02 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,0 +1,1241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>L2 Plates Documentation</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldoc</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Fields">Fields</a></li>
+<li><a href="#Client_Functions">Client Functions </a></li>
+<li><a href="#Shared_Functions">Shared Functions </a></li>
+<li><a href="#Server_Functions">Server Functions </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/Loader.html">Loader</a></li>
+  <li><a href="../modules/PlateNPC.html">PlateNPC</a></li>
+  <li><strong>PLATE</strong></li>
+  <li><a href="../modules/PLATE.Config.html">PLATE.Config</a></li>
+  <li><a href="../modules/ll_plates.sh_autogen.html">ll_plates.sh_autogen</a></li>
+  <li><a href="../modules/xAdmin.html">xAdmin</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>PLATE</code></h1>
+<p>License Plate Main Code</p>
+<p></p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Copyright</strong>: 2019 Limelight Gaming</li>
+        <li><strong>Release</strong>: 3-1-2</li>
+        <li><strong>Author</strong>: Doctor Internet</li>
+    </ul>
+
+
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#PLATE.Config.DoDebugPrints">PLATE.Config.DoDebugPrints</a></td>
+	<td class="summary"></td>
+	</tr>
+</table>
+<h2><a href="#Client_Functions">Client Functions </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#GetPlateColourFromPath">GetPlateColourFromPath (path)</a></td>
+	<td class="summary">Get the colour required for a specific plate by its path.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetBySeason">GetBySeason ()</a></td>
+	<td class="summary">Get the plate based on the current month/day.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#IsValid">IsValid ()</a></td>
+	<td class="summary">Ensure we're valid.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DrawCar">DrawCar (ent[, traceData])</a></td>
+	<td class="summary">Draw the plates on a single car.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DrawPlate">DrawPlate (ent, plate, text[, title], mat, col[, traceData])</a></td>
+	<td class="summary">Draw a single plate on a given entity.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#OpenMenu">OpenMenu (leng, ply)</a></td>
+	<td class="summary">Open the F3 license plate menu.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#PostDrawTranslucentRenderables">PostDrawTranslucentRenderables (d, s)</a></td>
+	<td class="summary">Internal function, used for hooking into PostDrawTranslucentRenderables.</td>
+	</tr>
+</table>
+<h2><a href="#Shared_Functions">Shared Functions </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#DebugStringify">DebugStringify (...)</a></td>
+	<td class="summary">Turn vararg inputs into a single string.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DebugPrint">DebugPrint (...)</a></td>
+	<td class="summary">Output a debug message to console and debugging file.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#RegisterPlate">RegisterPlate (veh, first, ...)</a></td>
+	<td class="summary">Register a plate for use by the vehicle defined by veh.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#RegisterLegacy">RegisterLegacy (veh, ...)</a></td>
+	<td class="summary">Internal Function.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetPlate">GetPlate (veh)</a></td>
+	<td class="summary">Get registered plates for a given vehicle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Config">Config</a></td>
+	<td class="summary">Table for storing all information about plates and their configuration.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Positions">Positions</a></td>
+	<td class="summary">The stored positions of the license plates.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CheckVehicleOwnership">CheckVehicleOwnership (ply, veh)</a></td>
+	<td class="summary">Check if a given vehicle is owned by the current player.</td>
+	</tr>
+</table>
+<h2><a href="#Server_Functions">Server Functions </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#RandomLetter">RandomLetter ()</a></td>
+	<td class="summary">Generate a random capital letter.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#RandomNumber">RandomNumber ()</a></td>
+	<td class="summary">Generate a random number, in the range 0-9
+ Whilst it's not quicker, it's nicer to have it being a function in the plate table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#DoReplace">DoReplace (val)</a></td>
+	<td class="summary">Internal function, used for RandomPlate
+ Takes the string or digit string format pattern, returning a random letter or number.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#RandomPlate">RandomPlate ()</a></td>
+	<td class="summary">Generates a random plate based on PLATE.DefaultFormat.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#VehicleClasses">VehicleClasses</a></td>
+	<td class="summary">Table containing valid vehicle classes.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetVehicleName">GetVehicleName (ent)</a></td>
+	<td class="summary">Get the "name" of the vehicle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GenerateTable">GenerateTable ()</a></td>
+	<td class="summary">Create the SQLite table, if it doesn't exist.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetChosenVehicle">GetChosenVehicle (ply, ent)</a></td>
+	<td class="summary">Get the player's chosen vehicle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#OpenMenu">OpenMenu (ply, ent)</a></td>
+	<td class="summary">Open the plate menu on a client.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#OnShowSpare1">OnShowSpare1 (ply)</a></td>
+	<td class="summary">Open the plate menu on the selected vehicle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#PlayerHasCash">PlayerHasCash (ply, amt)</a></td>
+	<td class="summary">Check if the player has the amount of cash required to do a transaction.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#PlayerTakeMoney">PlayerTakeMoney (ply, amt)</a></td>
+	<td class="summary">Take cash from a player.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SetLicensePlate">SetLicensePlate (ply, veh, plate)</a></td>
+	<td class="summary">Update the license plate in the DB and on the vehicle itself.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#SearchPlate">SearchPlate (plate)</a></td>
+	<td class="summary">Get the steamid of the player with matching plate.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#PlateFromSteamID">PlateFromSteamID (sid[, veh])</a></td>
+	<td class="summary">Fetch a table of all license plates, keyed by vehicle ID or
+ license plate for a specific steam ID / vehicle pair.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetLicensePlate">GetLicensePlate (ply, veh)</a></td>
+	<td class="summary">Fetch license plate information for a vehicle and generate if none exists.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CanOpenLicenseMenu">CanOpenLicenseMenu (ply, veh)</a></td>
+	<td class="summary">Hook function, called to determine if a player can open the license plate menu.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#CanUpdateLicensePlate">CanUpdateLicensePlate (ply, veh, plate)</a></td>
+	<td class="summary">Hook function, called to determine if a player can update their license plate.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#GetUpdate">GetUpdate (leng, ply, plate, veh_type, veh)</a></td>
+	<td class="summary">Internal function, used to process the plate update net message.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#IsEmergency">IsEmergency (veh)</a></td>
+	<td class="summary">Check if a given vehicle is an emergency vehicle.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#PrepareVehicle">PrepareVehicle (ply, veh)</a></td>
+	<td class="summary">Setup a vehicle's license plates, upon spawn.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "PLATE.Config.DoDebugPrints"></a>
+    <strong>PLATE.Config.DoDebugPrints</strong>
+    </dt>
+    <dd>
+
+
+
+    <ul>
+        <li><span class="parameter">DoDebugPrints</span>
+            <span class="types"><span class="type">boolean</span></span>
+         Whether the system will do debug prints.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Client_Functions"></a>Client Functions </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "GetPlateColourFromPath"></a>
+    <strong>GetPlateColourFromPath (path)</strong>
+    </dt>
+    <dd>
+    Get the colour required for a specific plate by its path.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         The path to grab colour for.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">Color</span></span>
+        The colour for the plate, or the default plate colour if none is defined.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetBySeason"></a>
+    <strong>GetBySeason ()</strong>
+    </dt>
+    <dd>
+    Get the plate based on the current month/day.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+        Path to the plate, not including base path.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "IsValid"></a>
+    <strong>IsValid ()</strong>
+    </dt>
+    <dd>
+    Ensure we're valid.  (Used for the hook lib).
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DrawCar"></a>
+    <strong>DrawCar (ent[, traceData])</strong>
+    </dt>
+    <dd>
+    Draw the plates on a single car.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ent</span>
+            <span class="types"><span class="type">Entity</span></span>
+         Entity to draw on.
+        </li>
+        <li><span class="parameter">traceData</span>
+            <span class="types"><span class="type">tab</span></span>
+         The trace data to use as a base for trace based plate hiding.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DrawPlate"></a>
+    <strong>DrawPlate (ent, plate, text[, title], mat, col[, traceData])</strong>
+    </dt>
+    <dd>
+    Draw a single plate on a given entity.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ent</span>
+            <span class="types"><span class="type">Entity</span></span>
+         The entity to draw on.
+        </li>
+        <li><span class="parameter">plate</span>
+            <span class="types"><span class="type">tab</span></span>
+         Plate data.
+        </li>
+        <li><span class="parameter">text</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         The license plate text to draw.
+        </li>
+        <li><span class="parameter">title</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         Title to draw.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">mat</span>
+            <span class="types"><span class="type">Material</span></span>
+         Plate material to draw.
+        </li>
+        <li><span class="parameter">col</span>
+            <span class="types"><span class="type">Color</span></span>
+         Color to draw.
+        </li>
+        <li><span class="parameter">traceData</span>
+            <span class="types"><span class="type">tab</span></span>
+         Tracedata to use.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "OpenMenu"></a>
+    <strong>OpenMenu (leng, ply)</strong>
+    </dt>
+    <dd>
+    Open the F3 license plate menu.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">leng</span>
+            <span class="types"><span class="type">int</span></span>
+         int Net Message Length
+        </li>
+        <li><span class="parameter">ply</span>
+         Confirmation that the net message was sent from the server. (Should be nil)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "PostDrawTranslucentRenderables"></a>
+    <strong>PostDrawTranslucentRenderables (d, s)</strong>
+    </dt>
+    <dd>
+    Internal function, used for hooking into PostDrawTranslucentRenderables.
+ Yes, I know BadCoderz fires on this.
+ The only other way of doing this is setting a RenderOverride function.
+ That breaks refract materials, so I'm not doing that.
+ I know I'm doing ents.GetAll in here. I need to test against multiple classes. prop_vehicle_jeep, prop_vehicle_jeep_old,
+ prop_vehicle_airboat, whatever the fuck the ID is for SCars. That has a higher performance hit than ents.GetAll.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">d</span>
+            <span class="types"><span class="type">bool</span></span>
+         If the hook is currently drawing depth.
+        </li>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">bool</span></span>
+         If the hook is currently drawing sky.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Shared_Functions"></a>Shared Functions </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "DebugStringify"></a>
+    <strong>DebugStringify (...)</strong>
+    </dt>
+    <dd>
+    Turn vararg inputs into a single string.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+            <span class="types"><span class="type">vararg</span></span>
+         Inputs.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+        Stringified Inputs.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DebugPrint"></a>
+    <strong>DebugPrint (...)</strong>
+    </dt>
+    <dd>
+    Output a debug message to console and debugging file.
+ <span style='color:red; font-weight:bold'>Only works when DoDebugPrints is set to true.</span>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">...</span>
+            <span class="types"><span class="type">vararg</span></span>
+         Inputs.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "RegisterPlate"></a>
+    <strong>RegisterPlate (veh, first, ...)</strong>
+    </dt>
+    <dd>
+    Register a plate for use by the vehicle defined by veh.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">veh</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         Vehicle name to register.
+        </li>
+        <li><span class="parameter">first</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a> or <a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
+         Vehicle name to copy or first license plate table.
+        </li>
+        <li><span class="parameter">...</span>
+            <span class="types"><span class="type">vararg</span></span>
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example">PLATE:RegisterPlate(<span class="string">"test1"</span>, {pos = Vector(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), ang = Angle(<span class="number">0</span>, <span class="number">0</span>, <span class="number">90</span>), scale = <span class="number">1.01</span>, condition = <span class="keyword">function</span>(ent) <span class="keyword">return</span> {Vector(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>), Angle(<span class="number">0</span>, <span class="number">0</span>, <span class="number">90</span>), scale = <span class="number">1.01</span>}})</pre></li>
+        <li><pre class="example">PLATE:RegisterPlate(<span class="string">"test1copy"</span>, <span class="string">"test1"</span>)</pre></li>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "RegisterLegacy"></a>
+    <strong>RegisterLegacy (veh, ...)</strong>
+    </dt>
+    <dd>
+    Internal Function.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">veh</span>
+
+        </li>
+        <li><span class="parameter">...</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetPlate"></a>
+    <strong>GetPlate (veh)</strong>
+    </dt>
+    <dd>
+    Get registered plates for a given vehicle.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">veh</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         Vehicle name to get plates for
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a></span>
+        Table of license plate positions, angles, scales and overrides.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Config"></a>
+    <strong>Config</strong>
+    </dt>
+    <dd>
+    Table for storing all information about plates and their configuration.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Positions"></a>
+    <strong>Positions</strong>
+    </dt>
+    <dd>
+    The stored positions of the license plates.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "CheckVehicleOwnership"></a>
+    <strong>CheckVehicleOwnership (ply, veh)</strong>
+    </dt>
+    <dd>
+    Check if a given vehicle is owned by the current player.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         The player to check ownership from.
+        </li>
+        <li><span class="parameter">veh</span>
+            <span class="types"><span class="type">Vehicle</span></span>
+         The entity to check ownership of.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        Is the vehicle owned by the player.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Server_Functions"></a>Server Functions </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "RandomLetter"></a>
+    <strong>RandomLetter ()</strong>
+    </dt>
+    <dd>
+    Generate a random capital letter.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+        Random uppercase letter.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "RandomNumber"></a>
+    <strong>RandomNumber ()</strong>
+    </dt>
+    <dd>
+    Generate a random number, in the range 0-9
+ Whilst it's not quicker, it's nicer to have it being a function in the plate table.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        Random number, range 0-9.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "DoReplace"></a>
+    <strong>DoReplace (val)</strong>
+    </dt>
+    <dd>
+    Internal function, used for RandomPlate
+ Takes the string or digit string format pattern, returning a random letter or number.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">val</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+          Input value for testing.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">str</span></span>
+        Random letter, number or empty string.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "RandomPlate"></a>
+    <strong>RandomPlate ()</strong>
+    </dt>
+    <dd>
+    Generates a random plate based on PLATE.DefaultFormat.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+        Randomly generated plate. 333,135,504 plates using default format.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "VehicleClasses"></a>
+    <strong>VehicleClasses</strong>
+    </dt>
+    <dd>
+    Table containing valid vehicle classes.
+ Done as [str | class] = [bool | valid].
+ Reduces O(N) lookup to O(1)
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">[prop_vehicle_jeep]</span>
+
+        </li>
+        <li><span class="parameter">[prop_vehicle_jeep_old]</span>
+
+        </li>
+        <li><span class="parameter">[prop_vehicle_prisoner_pod]</span>
+
+        </li>
+        <li><span class="parameter">[prop_vehicle_airboat]</span>
+
+        </li>
+        <li><span class="parameter">[gmod_sent_vehicle_fphysics_base]</span>
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetVehicleName"></a>
+    <strong>GetVehicleName (ent)</strong>
+    </dt>
+    <dd>
+    Get the "name" of the vehicle.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ent</span>
+            <span class="types"><span class="type">Entity</span></span>
+         The entity to get the name for.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types">optional <a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+        Returns nil on failure, vehicle name as string on success.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GenerateTable"></a>
+    <strong>GenerateTable ()</strong>
+    </dt>
+    <dd>
+    Create the SQLite table, if it doesn't exist.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetChosenVehicle"></a>
+    <strong>GetChosenVehicle (ply, ent)</strong>
+    </dt>
+    <dd>
+    Get the player's chosen vehicle.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         Player to get the vehicle from.
+        </li>
+        <li><span class="parameter">ent</span>
+            <span class="types"><span class="type">boolean</span> or <span class="type">Entity</span></span>
+         If false, get closest owned vehicle. If true, get eye trace vehicle. If ent, use specific ent.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "OpenMenu"></a>
+    <strong>OpenMenu (ply, ent)</strong>
+    </dt>
+    <dd>
+    Open the plate menu on a client.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         Player to open the menu on.
+        </li>
+        <li><span class="parameter">ent</span>
+            <span class="types"><span class="type">boolean</span> or <span class="type">Entity</span></span>
+         If false, get closest owned vehicle. If true, get eye trace vehicle. If ent, use specific ent.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types">optional <span class="type">boolean</span></span>
+        True if the net message sends, nil otherwise.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "OnShowSpare1"></a>
+    <strong>OnShowSpare1 (ply)</strong>
+    </dt>
+    <dd>
+    Open the plate menu on the selected vehicle.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         The player who called ShowSpare1.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "PlayerHasCash"></a>
+    <strong>PlayerHasCash (ply, amt)</strong>
+    </dt>
+    <dd>
+    Check if the player has the amount of cash required to do a transaction.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         The player to check cash on.
+        </li>
+        <li><span class="parameter">amt</span>
+            <span class="types"><span class="type">int</span></span>
+         The minimum cash the player must have.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        If the player can afford the transaction.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "PlayerTakeMoney"></a>
+    <strong>PlayerTakeMoney (ply, amt)</strong>
+    </dt>
+    <dd>
+    Take cash from a player.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         Player to take money from.
+        </li>
+        <li><span class="parameter">amt</span>
+            <span class="types"><span class="type">int</span></span>
+         The amount of money to take.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SetLicensePlate"></a>
+    <strong>SetLicensePlate (ply, veh, plate)</strong>
+    </dt>
+    <dd>
+    Update the license plate in the DB and on the vehicle itself.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a> or <span class="type">Player</span></span>
+         Player who's requesting the change, or their SteamID.
+        </li>
+        <li><span class="parameter">veh</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a> or <span class="type">Vehicle</span></span>
+         The vehicle entity the change is being requested for, or the vehicle name if setting without an entity.
+        </li>
+        <li><span class="parameter">plate</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         The plate that's having the change requested.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        Success?
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "SearchPlate"></a>
+    <strong>SearchPlate (plate)</strong>
+    </dt>
+    <dd>
+    Get the steamid of the player with matching plate.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">plate</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         License plate to find.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types">optional <a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+        SteamID if found.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "PlateFromSteamID"></a>
+    <strong>PlateFromSteamID (sid[, veh])</strong>
+    </dt>
+    <dd>
+    Fetch a table of all license plates, keyed by vehicle ID or
+ license plate for a specific steam ID / vehicle pair.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sid</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         SteamID to query.
+        </li>
+        <li><span class="parameter">veh</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         Vehicle ID
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.6">table</a>, <a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a> or <span class="type">nil</span></span>
+        Table of plates if veh isn't specified. Plate or nil if veh is specified.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetLicensePlate"></a>
+    <strong>GetLicensePlate (ply, veh)</strong>
+    </dt>
+    <dd>
+    Fetch license plate information for a vehicle and generate if none exists.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a> or <span class="type">Player</span></span>
+         Player or SteamID to get information for.
+        </li>
+        <li><span class="parameter">veh</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a> or <span class="type">Vehicle</span></span>
+         Vehicle (name) to get information for.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+        License plate.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "CanOpenLicenseMenu"></a>
+    <strong>CanOpenLicenseMenu (ply, veh)</strong>
+    </dt>
+    <dd>
+    Hook function, called to determine if a player can open the license plate menu.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         The player updating their plate.
+        </li>
+        <li><span class="parameter">veh</span>
+            <span class="types"><span class="type">Vehicle</span></span>
+         The vehicle being updated.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        If the change is allowed.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "CanUpdateLicensePlate"></a>
+    <strong>CanUpdateLicensePlate (ply, veh, plate)</strong>
+    </dt>
+    <dd>
+    Hook function, called to determine if a player can update their license plate.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         The player updating their plate.
+        </li>
+        <li><span class="parameter">veh</span>
+            <span class="types"><span class="type">Vehicle</span></span>
+         The vehicle being updated.
+        </li>
+        <li><span class="parameter">plate</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         The new license plate.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        If the change is allowed.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "GetUpdate"></a>
+    <strong>GetUpdate (leng, ply, plate, veh_type, veh)</strong>
+    </dt>
+    <dd>
+    Internal function, used to process the plate update net message.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">leng</span>
+            <span class="types"><span class="type">int</span></span>
+         Length of incoming net message.
+        </li>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         The player sending the message.
+        </li>
+        <li><span class="parameter">plate</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.3/manual.html#6.4">string</a></span>
+         The new plate.
+        </li>
+        <li><span class="parameter">veh_type</span>
+            <span class="types"><span class="type">int</span></span>
+         The vehicle picker type.
+        </li>
+        <li><span class="parameter">veh</span>
+            <span class="types"><span class="type">Vehicle</span></span>
+         The vehicle entity.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "IsEmergency"></a>
+    <strong>IsEmergency (veh)</strong>
+    </dt>
+    <dd>
+    Check if a given vehicle is an emergency vehicle.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">veh</span>
+            <span class="types"><span class="type">Vehicle</span></span>
+         Vehicle to check.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        If the vehicle is an emergency vehicle.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "PrepareVehicle"></a>
+    <strong>PrepareVehicle (ply, veh)</strong>
+    </dt>
+    <dd>
+    Setup a vehicle's license plates, upon spawn.
+ If, for whatever reason, you need to call this on a non-registered-vehicle?
+ Dev or something idk. SCars maybe? Should work.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ply</span>
+            <span class="types"><span class="type">Player</span></span>
+         The player that spawned the vehicle.
+        </li>
+        <li><span class="parameter">veh</span>
+            <span class="types"><span class="type">Vehicle</span></span>
+         The vehicle spawned.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2020-02-27 23:18:02 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
