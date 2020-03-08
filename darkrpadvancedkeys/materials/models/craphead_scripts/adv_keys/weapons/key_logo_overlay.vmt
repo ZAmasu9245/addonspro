@@ -1,0 +1,19 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/craphead_scripts/adv_keys/weapons/key_logo_overlay"	
+	"$bumpmap" "models\flat_normal"
+	"$translucent" "1"
+	"$decal" "1"
+
+	"$halflambert" "1"
+
+	"$phong" "1"
+	"$phongboost" ".5"
+	"$phongexponent" "10"
+	"$phongfresnelranges" "[.2 .5 1]"
+	
+	"$envmap" "env_cubemap"
+	"$normalmapalphaenvmapmask" "1"
+	"$envmaptint" "[.05 .05 .05]"
+	
+}

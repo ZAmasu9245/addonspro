@@ -1,0 +1,50 @@
+﻿##DarkRP Support##
+DarkRP 2.7+ ✔️  
+
+DarkRP versions from 2.6 and forward should also work with the script, nothing promised. Always update your DarkRP and don't modify the core functions.  
+
+##Video Preview##
+[![Video](https://i.imgur.com/L4g4ASZ.png)](https://www.youtube.com/watch?v=ILDWm8XmxoI)
+
+##Description##
+This script adds custom keys for DarkRP, which is fully animated (lock, unlock, beep for cars, etc).  
+You can unlock/lock instantly, but also have it more realistic and make it follow the keys (this is configurable).  
+Other than that it has cool features and supports VCMod with lights flashing when locking and unlocking.  
+
+##Features##
+- Lock/Unlock cars on a distance.  
+- Realistic lock & unlock animations for both doors and cars.  
+- Custom display for lock state on doors that you have permission to lock/unlock.  
+- VCMod support (flashes lights when using keys on cars).  
+- Realistic equip animation & sounds.  
+- Vehicle alarm custom model, sounds and support for VCMod where it flashes lights.  
+- Two sets of door locking and unlocking animations.  
+- Overwrites default keys on spawn and when changing job.  
+
+##Installation##
+This addon supports DarkRP 2.6.+  
+Other newer versions should also work. If they do not, please create a ticket so this can be sorted.  
+
+Extract "darkrpadvancedkeys" to your addons!   
+
+The default key weapon will now be replaced with the "Advanced Keys". Position is the same in the weapon scroll.
+
+##Content##
+All content needed for this script (models, materials, sounds) are uploaded to the workshop.  
+
+**[Workshop Link](https://steamcommunity.com/sharedfiles/filedetails/?id=1443497352)**   
+
+All content is set to download automatically. You can also add the workshop to your servers collection (if you use one).  
+
+##Customizing##
+To customize the general addon settings go to darkrpadvancedkeys/lua/autorun/advkeys\_config.lua  
+
+There are about 10 options to configure, mainly focusing on sounds, delays and more!  
+This is also where you can choose the secondary sets of door lock/unlock animations. Change ADVKEYS_UsePrimaryAnims to false.  
+
+##Errors & Support##  
+If you find any problems with the script, please create a support ticket with details of the situation and a copypaste of the error in console. I am also not interested in modifying you a custom version of the addon. Also not upon payment. Sorry!
+
+Conflicting addons is not to be said if I will support that or not. This is something I will decide upon confrontation about a conflicting addon. If you have some sort of proof that an addon is conflicting with my addon, please send me a PM with the details you might have.
+
+Thank you!
